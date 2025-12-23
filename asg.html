@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASG VAULT-OS | Sovereign Portal</title>
+    <style>
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; text-align: center; margin: 0; padding: 10px; }
+        .master-container { border: 8px double #0f0; background: #010; padding: 20px; box-shadow: 0 0 30px #0f0; border-radius: 15px; margin-top: 10px; }
+        .hidden { display: none; }
+        input { background: #000; color: #0f0; border: 1px solid #0f0; padding: 12px; margin: 10px 0; width: 80%; }
+        .asg-btn { background: #0f0; color: #000; border: none; padding: 12px 25px; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px #0f0; border-radius: 5px; width: 80%; }
+        .stat-box { border: 1px dashed #0f0; padding: 15px; margin: 15px 0; font-size: 1.1em; text-align: left; }
+        .glow { text-shadow: 0 0 15px #0f0; }
+        #log-window { height: 80px; overflow-y: scroll; font-size: 0.7em; background: #000; padding: 5px; border: 1px solid #333; margin-top: 10px; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <div class="master-container">
+        <h1 class="glow" id="main-title">🏛️ ASG VAULT-OS</h1>
+        <hr style="border: 1px solid #0f0;">
+
+        <div id="login-section">
+            <h3 style="color: #fff;">AUTHORIZED ACCESS ONLY</h3>
+            <input type="text" id="username" placeholder="Enter Samrat Username">
+            <input type="password" placeholder="Divine Password">
+            <button class="asg-btn" onclick="activateSystem()">ACTIVATE SYSTEM</button>
+        </div>
+
+        <div id="dashboard-section" class="hidden">
+            <h2 style="color: #f00;" id="country-tag">SYSTEM LIVE: INDIA CORE</h2>
+            <div class="stat-box">
+                🤖 ROBOTS DEPLOYED: <span id="robot-count">3000</span><br>
+                💰 TOTAL BOUNTY: <span id="bounty-count">₹0</span><br>
+                📑 PAGES CREATED: <span id="page-count">0</span>
+            </div>
+            <div style="display: flex; justify-content: space-around;">
+                <button style="width: 45%;" class="asg-btn" onclick="switchCountry('USA', '#00f')">🇺🇸 USA</button>
+                <button style="width: 45%;" class="asg-btn" onclick="switchCountry('UAE', '#f00')">🇦🇪 UAE</button>
+            </div>
+            <div id="log-window">> Initializing ASG-VAULT-OS...</div>
+            <button class="asg-btn" style="margin-top: 20px; background: #333; color: #fff;" onclick="location.reload()">LOGOUT</button>
+        </div>
+    </div>
+
+    <script>
+        let robots = 3000; let bounty = 0; let pages = 0;
+        function activateSystem() {
+            let name = document.getElementById('username').value;
+            if(name === "") { alert("Enter Samrat Username"); return; }
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            setInterval(() => {
+                robots += 1; bounty += 500000; pages += 1000000;
+                document.getElementById('robot-count').innerText = robots.toLocaleString();
+                document.getElementById('bounty-count').innerText = "₹" + bounty.toLocaleString();
+                document.getElementById('page-count').innerText = pages.toLocaleString();
+                let log = document.getElementById('log-window');
+                log.innerHTML += `> Recovering Bounty...<br>`;
+                log.scrollTop = log.scrollHeight;
+            }, 3000);
+        }
+        function switchCountry(n, c) {
+            document.getElementById('country-tag').innerText = "SYSTEM LIVE: " + n;
+            document.getElementById('country-tag').style.color = c;
+        }
+    </script>
+</body>
+</html>
